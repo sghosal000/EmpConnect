@@ -1,1 +1,43 @@
-<p>employee-table works!</p>
+<div class="table-container">
+    <h2 class="table-name">Employee List</h2>
+    @if (loading) {
+    <div class="loading">Loading Employees Data</div>
+    }
+    @if (error) {
+    <div class="error">Error loading Employees {{error}}</div>
+    }
+
+    @if(!loading && !error && employees.length> 0){
+    <table class="emp-table">
+        <thead class="emp-table-head">
+            <tr>
+                <th class="emp-table-head-txt">ID</th>
+                <th class="emp-table-head-txt">Name</th>
+                <th class="emp-table-head-txt">Department</th>
+                <th class="emp-table-head-txt">Designation</th>
+                <th class="emp-table-head-txt">Salary</th>
+                <th class="emp-table-head-txt">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(employee of employees; track employee){
+            <tr>
+                <td class="emp-table-body-txt">{{employee.empId}}</td>
+                <td class="emp-table-body-txt">{{employee.name}}</td>
+                <td class="emp-table-body-txt">{{employee.department || 'N/A'}}</td>
+                <td class="emp-table-body-txt">{{employee.designation || 'N/A'}}</td>
+                <td class="emp-table-body-txt">{{employee.salary}}</td>
+                <td class="emp-table-body-txt actions">
+                    <img src="../../../assets/edit.svg" alt="edit" class="edit action-icon"
+                        (click)="editEmployee(employee.empId)" />
+                    <img src="../../../assets/delete.svg" alt="delete" class="delete action-icon"
+                        (click)="deleteEmployee(employee.empId)" />
+                </td>
+            </tr>
+            } @empty {
+            <td class="emp-table-body-txt">No Employees here</td>
+            }
+        </tbody>
+    </table>
+    }
+</div>
