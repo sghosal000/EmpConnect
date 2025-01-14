@@ -15,6 +15,4 @@ app.use(express.urlencoded({
 app.use('/emp', employeeRouter)
 
 dbConnect()
-console.log(`${Math.floor(Math.random() * 10000000000)}`);
-
 app.listen(PORT, () => console.log(`listening on port: ${PORT}`));

@@ -63,7 +63,7 @@ const getEmps = async (req, res) => {
 
 const getEmp = async (req, res) => {
     try {
-        const { empId } = req.query
+        const { empId } = req.params
         if (!empId) {
             return res.status(400).json({ message: "missing required field: empId" })
         }
@@ -82,14 +82,14 @@ const getEmp = async (req, res) => {
 
 const updateEmp = async (req, res) => {
     try {
-        const { empId } = req.query
+        const { empId } = req.params
         const { name, department, designation, salary } = req.body
 
         if (!empId) {
             return res.status(400).json({ message: "missing required field: empId" })
         }
 
-        const emp = await Employee.find({ empId })
+        const emp = await Employee.findOne({ empId })
         if (!emp) {
             return res.status(404).json({ message: "no employee found" })
         }
@@ -109,7 +109,7 @@ const updateEmp = async (req, res) => {
 
 const removeEmp = async (req, res) => {
     try {
-        const { empId } = req.query
+        const { empId } = req.params
         if (!empId) {
             return res.status(400).json({ message: "missing required field: empId" })
         }
