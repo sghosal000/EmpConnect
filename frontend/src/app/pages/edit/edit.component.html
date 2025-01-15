@@ -1,1 +1,27 @@
-<p>edit works!</p>
+<app-header></app-header>
+<div class="edit-container">
+    <h2>Edit Employee</h2>
+    @if (loading) {
+    <div class="loading">Loading Employee Data</div>
+    } @else{
+    <form (ngSubmit)="updateEmployee()">
+        <label>
+            Name:
+            <input type="text" [(ngModel)]="employee.name" name="name" required />
+        </label>
+        <label>
+            Department:
+            <input type="text" [(ngModel)]="employee.department" name="department" />
+        </label>
+        <label>
+            Designation:
+            <input type="text" [(ngModel)]="employee.designation" name="designation" />
+        </label>
+        <label>
+            Salary:
+            <input type="number" [(ngModel)]="employee.salary" name="salary" />
+        </label>
+        <button type="submit">Save</button>
+    </form>
+    }
+</div>

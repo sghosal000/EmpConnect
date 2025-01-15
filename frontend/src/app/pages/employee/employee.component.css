@@ -1,3 +1,88 @@
 .emp-page {
     min-height: 100dvh;
 }
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.modal-header {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.modal-content {
+    background: #334155;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-field {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-field label {
+    font-weight: bold;
+}
+
+.form-actions {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-actions button {
+    width: 40%;
+    padding: 5px 15px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: #0ea5e9;
+}
+
+.btn-cancel {
+    background-color: #1e293b;
+}
+
+.add-employee-btn {
+    margin-left: auto;
+    padding: 5px 10px;
+    background: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.add-employee-btn:hover {
+    background: #0056b3;
+}

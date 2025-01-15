@@ -1,17 +1,16 @@
 .header {
-    height: 50px;
+    height: fit-content;
     width: 100%;
-    padding: 5px;
+    padding: 30px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #020617;
 }
 
 .logo {
-    height: 100%;
+    height: 40px;
     width: 20%;
-    padding: 5px;
-    /* margin: auto; */
 }
 
 .logo-img {
