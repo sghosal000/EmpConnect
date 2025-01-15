@@ -1,27 +1,32 @@
 <app-header></app-header>
 <div class="edit-container">
-    <h2>Edit Employee</h2>
+    <h2 class="edit-header">Edit Employee</h2>
     @if (loading) {
     <div class="loading">Loading Employee Data</div>
     } @else{
-    <form (ngSubmit)="updateEmployee()">
-        <label>
-            Name:
+    <form (ngSubmit)="updateEmployee()" class="edit-form">
+        <div class="form-field">
+            <label>Name:</label>
             <input type="text" [(ngModel)]="employee.name" name="name" required />
-        </label>
-        <label>
-            Department:
-            <input type="text" [(ngModel)]="employee.department" name="department" />
-        </label>
-        <label>
-            Designation:
+        </div>
+        <div class="form-field">
+            <label>Department:</label>
+            <select [(ngModel)]="employee.department" name="department" required>
+                <option value="" disabled selected>Select Department</option>
+                @for (department of departments; track department) {
+                <option [value]="department">{{department}}</option>
+                }
+            </select>
+        </div>
+        <div class="form-field">
+            <label>Designation:</label>
             <input type="text" [(ngModel)]="employee.designation" name="designation" />
-        </label>
-        <label>
-            Salary:
+        </div>
+        <div class="form-field">
+            <label>Salary:</label>
             <input type="number" [(ngModel)]="employee.salary" name="salary" />
-        </label>
-        <button type="submit">Save</button>
+        </div>
+        <button type="submit" class="btn-submit">Save</button>
     </form>
     }
 </div>

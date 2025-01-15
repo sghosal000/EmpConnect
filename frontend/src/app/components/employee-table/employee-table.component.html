@@ -12,11 +12,32 @@
         <table class="emp-table">
             <thead class="emp-table-head">
                 <tr>
-                    <th class="emp-table-head-txt">ID</th>
-                    <th class="emp-table-head-txt">Name</th>
+                    <th class="emp-table-head-txt" (click)="sortEmployees('empId')">
+                        ID
+                        @if (currentSorting === 'empId'){
+                        <span>
+                            {{ ascending ? '▲' : '▼' }}
+                        </span>
+                        }
+                    </th>
+                    <th class="emp-table-head-txt" (click)="sortEmployees('name')">
+                        Name
+                        @if (currentSorting === 'name'){
+                        <span>
+                            {{ ascending ? '▲' : '▼' }}
+                        </span>
+                        }
+                    </th>
                     <th class="emp-table-head-txt">Department</th>
                     <th class="emp-table-head-txt">Designation</th>
-                    <th class="emp-table-head-txt">Salary</th>
+                    <th class="emp-table-head-txt" (click)="sortEmployees('salary')">
+                        Salary
+                        @if (currentSorting === 'salary'){
+                        <span>
+                            {{ ascending ? '▲' : '▼' }}
+                        </span>
+                        }
+                    </th>
                     <th class="emp-table-head-txt">Actions</th>
                 </tr>
             </thead>

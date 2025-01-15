@@ -2,9 +2,11 @@
     <app-header></app-header>
     <app-employee-table [employees]='employees' [loading]='loading' [error]='error'>
     </app-employee-table>
-    <button class="add-employee-btn" (click)="openModal()">Add Employee</button>
+    <div class="add-btn-wrapper">
+        <button class="add-employee-btn" (click)="openModal()">Add Employee</button>
+    </div>
 
-    @if (true) {
+    @if (modalOpen) {
     <div class="modal">
         <div class="modal-content">
             <h3 class="modal-header">Add New Employee</h3>

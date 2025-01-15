@@ -64,10 +64,12 @@ export class EmployeeComponent implements OnInit {
   addEmployee() {
     this.employeeService.addEmployee(this.newEmployee).subscribe({
       next: () => {
+        this.resetForm()
         this.fetchEmployees();
         this.closeModal();
       },
       error: (err) => {
+        this.resetForm()
         alert("Could not add Employee details")
         console.error('Error adding employee:', err);
       },

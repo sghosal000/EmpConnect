@@ -15,6 +15,8 @@ export class EditComponent implements OnInit {
   employee: any = {}
   empId: number = 0
   loading = true
+  departments: string[] = ['HR', 'Finance', 'Engineering', 'Sales', 'Marketing'];
+
 
   constructor(
     private rout: ActivatedRoute,

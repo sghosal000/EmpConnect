@@ -14,6 +14,9 @@ export class EmployeeTableComponent {
   @Input() loading = true
   @Input() error = ''
 
+  currentSorting = ''
+  ascending = true
+
   constructor(private router: Router, private employeeService: EmployeeService) { }
 
   editEmployee(empId: number) {
@@ -41,5 +44,20 @@ export class EmployeeTableComponent {
         }
       })
     }
+  }
+
+  sortEmployees(field: string) {
+    if (this.currentSorting === field) {
+      this.ascending = !this.ascending
+    } else {
+      this.currentSorting = field
+      this.ascending = true
+    }
+
+    this.employees.sort((a: any, b: any) => {
+      if (a[field] < b[field]) return this.ascending ? -1 : 1;
+      if (a[field] > b[field]) return this.ascending ? 1 : -1;
+      return 0
+    })
   }
 }
