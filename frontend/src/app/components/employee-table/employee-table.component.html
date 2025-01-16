@@ -8,11 +8,19 @@
     }
 
     @if(!loading && !error && employees.length> 0){
+    <div class="add-btn-wrapper">
+        <div class="search-bar">
+            <img src="../../../assets/search.svg" alt="search" class="search-icon">
+            <input type="text" placeholder="Search..." [(ngModel)]="searchStr" (input)="searchEmployees()"
+                class="search-field">
+        </div>
+        <button class="add-employee-btn" (click)="openAddEmployeeModal()">Add Employee</button>
+    </div>
     <div class="emp-table-wrapper">
         <table class="emp-table">
             <thead class="emp-table-head">
                 <tr>
-                    <th class="emp-table-head-txt" (click)="sortEmployees('empId')">
+                    <th class="emp-table-head-txt sortable" (click)="sortEmployees('empId')">
                         ID
                         @if (currentSorting === 'empId'){
                         <span>
@@ -20,7 +28,7 @@
                         </span>
                         }
                     </th>
-                    <th class="emp-table-head-txt" (click)="sortEmployees('name')">
+                    <th class="emp-table-head-txt sortable" (click)="sortEmployees('name')">
                         Name
                         @if (currentSorting === 'name'){
                         <span>
@@ -30,7 +38,7 @@
                     </th>
                     <th class="emp-table-head-txt">Department</th>
                     <th class="emp-table-head-txt">Designation</th>
-                    <th class="emp-table-head-txt" (click)="sortEmployees('salary')">
+                    <th class="emp-table-head-txt sortable" (click)="sortEmployees('salary')">
                         Salary
                         @if (currentSorting === 'salary'){
                         <span>
@@ -42,13 +50,13 @@
                 </tr>
             </thead>
             <tbody class="emp-table-body">
-                @for(employee of employees; track employee){
+                @for(employee of filteredEmployees; track employee){
                 <tr class="emp-table-row">
                     <td class="emp-table-body-txt">{{employee.empId}}</td>
                     <td class="emp-table-body-txt">{{employee.name}}</td>
                     <td class="emp-table-body-txt">{{employee.department || 'N/A'}}</td>
                     <td class="emp-table-body-txt">{{employee.designation || 'N/A'}}</td>
-                    <td class="emp-table-body-txt">{{employee.salary}}</td>
+                    <td class="emp-table-body-txt">{{employee.salary || 'N/A'}}</td>
                     <td class="emp-table-body-txt actions">
                         <img src="../../../assets/edit.svg" alt="edit" class="edit action-icon"
                             (click)="editEmployee(employee.empId)" />
@@ -61,6 +69,13 @@
                 }
             </tbody>
         </table>
+    </div>
+    <div class="pagination-wrapper">
+        @for(page of [].constructor(totalPages); track page; let i = $index){
+        <button class="page-button" (click)="changePage(i + 1)">
+            {{i + 1}}
+        </button>
+        }
     </div>
     }
 </div>

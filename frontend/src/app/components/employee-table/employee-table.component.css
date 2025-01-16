@@ -15,6 +15,50 @@
     color: #94a3b8;
 }
 
+.add-btn-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-bar {
+    border-radius: 50px;
+    padding: 5px 15px 5px 10px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background-color: #334155;
+}
+
+.search-icon {
+    width: 25px;
+    filter: invert(1);
+}
+
+.search-field {
+    padding: 2px 5px;
+    font-size: 1rem;
+    color: #94a3b8;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #1e293b60;
+    outline: none;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.add-employee-btn {
+    padding: 10px 20px;
+    background: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 .emp-table-wrapper {
     min-width: 100%;
     border: 1px solid #334155;
@@ -26,6 +70,7 @@
 
 .emp-table {
     min-width: 100%;
+    max-height: 30dvh;
     border-collapse: collapse;
     text-align: center;
 }
@@ -33,6 +78,17 @@
 .emp-table-head {
     border-radius: 10px;
     background-color: #334155;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.sortable {
+    cursor: pointer;
+}
+
+.emp-table-body {
+    overflow-y: auto;
 }
 
 .emp-table-row {
