@@ -14,7 +14,7 @@ export class EmployeeService {
   }
 
   getEmployeeById(empId: number) {
-    return this.http.get(`${this.baseUrl}/${empId}`)
+    return this.http.get(`${this.baseUrl}/id/${empId}`)
   }
 
   addEmployee(employee: any) {

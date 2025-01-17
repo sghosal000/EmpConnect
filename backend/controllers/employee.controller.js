@@ -126,11 +126,54 @@ const removeEmp = async (req, res) => {
     }
 }
 
+const filterEmp = async (req, res) => {
+    try {
+        const {
+            start = 0,
+            limit = 10,
+            query = {},
+        } = req.body
+
+        const filter = {}
+
+        if (query.empId && !isNaN(query.empId)) filter.empId = Number(query.empId)
+        if (query.name) filter.name = { $regex: query.name, $options: 'i' }
+        if (query.department && query.department.length > 0) filter.department = { $in: query.department }
+        if (query.designation) filter.designation = { $regex: query.designation, $options: 'i' }
+        if (query.minSalary) filter.salary = { ...filter.salary, $gte: query.minSalary }
+        if (query.maxSalary) filter.salary = { ...filter.salary, $lte: query.maxSalary }
+
+
+        const filteredEmployees = await Employee.find(filter)
+            .sort({ updatedAt: -1 })
+            .skip(Number(start))
+            .limit(Number(limit))
+        const totalFound = await Employee.countDocuments(filter)
+
+        if (filteredEmployees.length === 0) {
+            return res.status(404).json({ message: "no employee found" })
+        }
+
+        res.status(200).json({
+            filteredEmployees,
+            pageInfo: {
+                total: totalFound,
+                start: Number(start),
+                limit: Number(limit)
+            }
+        })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
 
 module.exports = {
     createEmp,
     getEmps,
     getEmp,
     updateEmp,
-    removeEmp
+    removeEmp,
+    filterEmp
 }
